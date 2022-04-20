@@ -1,4 +1,4 @@
-package com.lizhaoxuan.im.demo;
+package com.lizhaoxuan.im.core.handler;
 
 import com.lizhaoxuan.im.protocol.packet.CommandManager;
 import com.lizhaoxuan.im.protocol.packet.PacketCodeC;
@@ -23,7 +23,7 @@ public class BaseHandler extends LengthFieldBasedFrameDecoder {
 
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
-        log.info("start validate...");
+//        log.info("start validate...");
         // 校验魔数
         if (in.getInt(in.readerIndex()) != PacketCodeC.MAGIC_NUMBER){
             // 非IM协议的连接，直接断开
@@ -48,7 +48,7 @@ public class BaseHandler extends LengthFieldBasedFrameDecoder {
             ctx.channel().close();
             return null;
         }
-        log.info("validate success...");
+//        log.info("validate success...");
         // 拆包
         return super.decode(ctx, in);
     }
